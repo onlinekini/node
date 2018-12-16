@@ -1,5 +1,7 @@
 var rect = require("./rectangle")
 
+var callbacks = require("./randomcode")
+
 /*var solveRectangle  = (l,b) => {
     console.log("Solving for rectanle with l = " + l + " and b = " + b)
 
@@ -11,7 +13,7 @@ var rect = require("./rectangle")
     }
 } */
 
-function solveRectangle (l,b) {
+/*function solveRectangle (l,b) {
     console.log("Processing rect with l = " + l + " and b " + b);
     rect(l, b, (err, rectangle) => {
         if (err) {
@@ -27,5 +29,5 @@ function solveRectangle (l,b) {
 
 solveRectangle(3,4)
 solveRectangle(0,5)
-solveRectangle(5,-3)
+solveRectangle(5,-3)*/
 
