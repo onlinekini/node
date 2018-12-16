@@ -1,2 +1,3 @@
 /node-http/node_modules
 /node-http/node_modules/*
+/*/node_modules

@@ -1,13 +1,13 @@
 {
-  "name": "node-http",
+  "name": "node-express",
   "version": "1.0.0",
-  "description": "Node HTTP module example",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index"
+    "start":"node index"
   },
-  "author": "Vivekanand Kini",
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
