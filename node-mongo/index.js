@@ -1,28 +1,46 @@
-const mongoclient = require('mongodb').MongoClient
+const Mongoclient = require('mongodb').MongoClient
 const assert = require('assert')
+const dboper = require('./operations')
 
 const url = 'mongodb://localhost:27017'
 
-mongoclient.connect(url, (err, client) => {
+Mongoclient.connect(url, (err, client) => {
     assert.equal(err, null)
 
     console.log("after connect")
     const db = client.db('test')
-    const collection = db.collection('dishes')
+    const collectionName = 'dishes'
 
-    collection.insertOne({"name" : "Pepperoni Pizza", "description" : "the usual pizza"}, (err, result) => {
-        assert.equal(err, null)
-        console.log(`after insert ${result.ops}`)        
+    
+    dboper.insertDocument(db, {name:"Pepperoni Pizza", description:"The usual Pizza!!"}, collectionName, result => {
+        console.log("Insert complete ", result)
 
-        collection.find({}).toArray( (err, docs) => {
-            assert.equal(err, null)
-            console.log(docs)
+        dboper.insertDocument(db, {name:"doughnut", description:"dought nut!!"}, collectionName, result => {
+            console.log("Insert complete ", result)
 
-            db.dropCollection('dishes', (err, result) => {
-                assert.equal(err, null)
-                client.close();
+            dboper.findDocuments(db, collectionName, docs => {
+                console.log("Found ", docs)
+
+                dboper.updateDocument(db, {name:"Pepperoni Pizza"}, 
+                                          {name: "MacnCheese", description :"Mac & Cheese what else do you expect!!!"}, 
+                                          collectionName, 
+                                          result => {
+                                              
+                    console.log("Updated", result)
+                    
+                    dboper.removeDocument(db, {name:"Pepperoni Pizza"}, collectionName, result => {
+                        console.log("Deleted!!!")
+                    })
+                
+                })
             })
         })
+
     })
+
+
+   
+
+
 })
 
